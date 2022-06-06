@@ -37,7 +37,7 @@ fun main() {
             break
 
         val age = input.toInt()
-        if(age < 17) {
+        if(age < 18) {
             println("You can't go")
             continue
     } else {
