@@ -115,6 +115,63 @@ fun main() {
     iAmNotADoctor.work(4000)
     iAmNotADoctor.study(11000)
 
+    // Constructors
+
+//    val myTruck = Truck("BMW",220)
+    val myTruck = Truck()
+    val yourTruck = Truck("BMW")
+    val hisTruck = Truck("Fiat", 220)
+
+    // Exercise 1 (Constructors)
+
+    val myChess = Chess()
+    val yourChess = Chess("Flabby legs")
+    val herChess = Chess("Strong legs", 30)
+
+    // Exercise 2
+
+    val myStore = Store()
+    val yourStore = Store("Jessica")
+    val herStore = Store("Maiara", 100)
+
+    myStore.whetherAfford()
+    yourStore.whetherAfford()
+    herStore.whetherAfford()
+
+    // Setter and Getter
+    val car = WeirdCar()
+    car.speed = 100
+    println("car.name ${car.name}")
+    println("car.speed ${car.speed}")
+
+// made by the teacher
+    val account = BankAccount()
+    account.account = 300
+    account.account = 400
+    account.account = 399
+
+    // made by me but, I don't get it
+    val rules = BankRules()
+    rules.money = 500
+    rules.money = 9999
+    rules.money = 10001
+
+    // "This" keyword
+    val postIt = PostItNote()
+    println(postIt.message)
+    postIt.updateMessage("Meeting at 5")
+    println(postIt.message)
+
+    // Exercise 1
+    val ideas = NoIdeas()
+    println(ideas.contents)
+    ideas.updateContents("Now i have an idea")
+    println(ideas.contents)
+
+    val newTable = NewTable()
+    println("This table has a size = ${newTable.size} and height = ${newTable.height}")
+    newTable.updateSizes(30, 50)
+    println("This table has a size = ${newTable.size} and height = ${newTable.height}")
 
 }
 
@@ -293,4 +350,155 @@ open class Job {
 open class Engineer : Job()
 
 class Doctor : Engineer()
+
+// Starting "More about classes"
+
+// Constructors
+
+//class Truck(var Model:String, var topSpeed:Int) {
+//}
+
+class Truck {
+    constructor() {
+        model = "No model"
+        topSpeed = 150
+    }
+
+    constructor(newModel: String) {
+        model = newModel
+        topSpeed = 150
+    }
+
+    constructor(newModel: String, newSpeed: Int) {
+        model = newModel
+        topSpeed = newSpeed
+    }
+
+    var model: String? = null
+    var topSpeed = 100
+}
+
+// Exercise 1 (Constructors)
+
+class Chess {
+    constructor() {
+        legs = "Naked"
+        height = 15
+        println("Legs type: $legs and height = $height")
+    }
+
+    constructor(newLegs: String) {
+        legs = newLegs
+        height = 15
+        println("Legs type: $legs and height = $height")
+    }
+
+    constructor(newLegs: String, newHeight: Int) {
+        legs = newLegs
+        height = newHeight
+        println("Legs type: $legs and height = $height")
+    }
+
+    var legs: String? = null
+    var height = 20
+}
+
+class Store {
+    constructor() {
+        userName = "Lucas"
+        balance = 10
+    }
+
+    constructor(newUserName: String) {
+        userName = newUserName
+        balance = 20
+    }
+
+    constructor(newUserName: String, newBalance: Int) {
+        userName = newUserName
+        balance = newBalance
+    }
+
+    var userName = "User Name"
+    var balance = 0
+    var shirtPrice = 20
+
+    fun whetherAfford() {
+        if (balance >= shirtPrice) {
+            println("$userName has $balance dollars and, are able to buy ${balance / shirtPrice} pieces")
+        } else {
+            println("$userName can't afford any pieces")
+        }
+    }
+}
+
+// Setter and Getter
+class WeirdCar {
+    var name = ""
+    var speed: Int
+        get() = 50
+        set(value) {
+            name = "High speed car $value"
+        }
+}
+
+// made by the teacher
+class BankAccount {
+    var creditRating = 500
+    var account: Int = 0
+        set(value) {
+            if (value > account)
+                creditRating++
+            else
+                creditRating--
+            field = value
+            println("New credit rating is $creditRating")
+        }
+}
+
+// made by me but, I don't get it
+class BankRules {
+    var rate = 0.0
+    var money = 0
+        set(value) {
+            if (value < 1000)
+                rate = 1.0
+            else if (value in 1000..10000)
+                rate = 0.5
+            else
+                rate = 0.2
+            field = value
+            println("Your rate is $rate")
+        }
+}
+
+// "This" keyword
+
+class PostItNote {
+    var message: String = "No message"
+
+    fun updateMessage(message: String) {
+        this.message = message
+    }
+}
+
+class NoIdeas {
+    var contents: String = "The keyword This sounds great"
+
+    fun updateContents(contents: String) {
+        this.contents = contents
+    }
+}
+
+class NewTable {
+    var height: Int = 10
+    var size: Int = 25
+
+    fun updateSizes(height: Int, size: Int) {
+        this.height = height
+        this.size = size
+    }
+
+}
+
 
