@@ -1,3 +1,5 @@
+
+
 fun main() {
     //starting Objects
     val myCar = Car()
@@ -172,6 +174,23 @@ fun main() {
     println("This table has a size = ${newTable.size} and height = ${newTable.height}")
     newTable.updateSizes(30, 50)
     println("This table has a size = ${newTable.size} and height = ${newTable.height}")
+
+    // INIT block
+
+    val myCar3 = Car3()
+
+    val myLaptop2 = Laptop2()
+
+    val webSite = Website()
+
+    println(Car4.getDrivingInstructions())
+
+    val course = KotlinCourse()
+    course.getCourseInfo()
+    println(KotlinCourse.moreInformationsAboutIt())
+
+    val myBook = Book(Book.getEditor())
+    println(myBook.editor.editorName)
 
 }
 
@@ -501,4 +520,59 @@ class NewTable {
 
 }
 
+// Starting INIT block
 
+class Car3 {
+    val model = "BMW"
+    val topSpeed = 100
+
+    init {
+        println("This car is a $model and has a top speed of $topSpeed")
+    }
+}
+
+class Laptop2 {
+    val model = "Macbook"
+
+    init {
+        println("The operation system was being installed on your $model")
+    }
+}
+
+class Website {
+    val site = "Google"
+
+    init {
+        println("This is the new $site homepage")
+    }
+}
+
+class Car4 {
+    companion object {
+        fun getDrivingInstructions(): String {
+            return "Drive safe"
+        }
+    }
+}
+
+class KotlinCourse {
+    fun getCourseInfo () {
+        println("This course is available for 100 dollars")
+    }
+
+    companion object {
+        fun moreInformationsAboutIt(): String {
+            return "You can pay with credit card"
+        }
+    }
+}
+
+class Book (val editor: Editor) {
+    companion object {
+        fun getEditor() = Editor("O Reilly")
+    }
+}
+
+class Editor(val editorName: String) {
+
+}
