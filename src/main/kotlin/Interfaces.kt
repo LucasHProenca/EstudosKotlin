@@ -30,6 +30,19 @@ fun main() {
         val child = Child()
         child.raisePet()
     }
+
+    var myFood: Food = FastFoodRestaurant().buyFood()
+    myFood.eat()
+
+    myFood = FrenchRestaurant().buyFood()
+    myFood.eat()
+
+    var myRent: Car2 = CheapCar().rentCar()
+    myRent.drive()
+
+    myRent = LuxuryCar().rentCar()
+    myRent.drive()
+
 }
 
 interface Oven2 {
@@ -179,5 +192,66 @@ class Child {
 class PetStore {
     fun getPet(): Pet {
         return Puppy()
+    }
+}
+
+interface Food {
+    fun eat()
+}
+
+class FastFood: Food {
+    override fun eat() {
+        println("Fast food will feed you")
+    }
+}
+
+class FrenchFood: Food {
+    override fun eat() {
+        println("French food will feed you AND delight you")
+    }
+}
+
+class FastFoodRestaurant {
+    fun buyFood(): Food {
+        return FastFood()
+    }
+}
+
+class FrenchRestaurant {
+    fun buyFood(): Food {
+        return FrenchFood()
+    }
+}
+
+interface Car2 {
+    var price:Int
+    fun drive()
+}
+
+class UtilityCar: Car2 {
+    override var price = 100
+
+    override fun drive() {
+        println("This car can drive you for $price dollars per day")
+    }
+}
+
+class Limousine: Car2 {
+    override var price = 500
+
+    override fun drive() {
+        println("This car can drive you AND there is comfort for $price dollars per day")
+    }
+}
+
+class CheapCar {
+    fun rentCar(): Car2 {
+        return UtilityCar()
+    }
+}
+
+class LuxuryCar {
+    fun rentCar(): Car2 {
+        return Limousine()
     }
 }
